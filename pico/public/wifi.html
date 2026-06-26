@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Configura Wi-Fi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Il contenitore del Form con i bordi arrotondati e lo sfondo grigio */
+        .form-container {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #333333;
+            font-size: 22px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #555555;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0 4px 0;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        /* Effetto quando si clicca dentro il campo di testo */
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h2>Configurazione Wi-Fi</h2>
+        
+        <form id="wifiForm" onsubmit="save(event)">
+            <label for="ssid">SSID:</label>
+            <input id="ssid" type="text" required autocomplete="off">
+
+            <label for="password">Password:</label>
+            <input id="password" type="password" required>
+            
+            <button type="submit">Salva e Riavvia</button>
+        </form>
+    </div>
+
+    <script>
+        async function load() {
+            try {
+                let cfg = await fetch("/wifi").then(r => r.json());
+                document.getElementById('ssid').value = cfg.ssid || "";
+                document.getElementById('password').value = cfg.password || "";
+            } catch (e) {
+                console.error("Errore nel caricamento della configurazione", e);
+            }
+        }
+
+        async function save(e) {
+            // Evita che il form ricarichi la pagina al click
+            e.preventDefault(); 
+            
+            const data = { 
+                ssid: document.getElementById('ssid').value, 
+                password: document.getElementById('password').value 
+            };
+            
+            try {
+                await fetch("/wifi", { 
+                    method: "POST", 
+                    headers: { "Content-Type": "application/json" }, 
+                    body: JSON.stringify(data) 
+                });
+                alert("Impostazioni salvate. Il dispositivo si riavvierà.");
+            } catch (e) {
+                alert("Errore durante il salvataggio.");
+            }
+        }
+        
+        // Carica i dati all'avvio
+        load();
+    </script>
+</body>
+
+</html>

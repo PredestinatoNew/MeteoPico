@@ -1,0 +1,11 @@
+# File locali
+pico/data/*
+!pico/data/sensors.json
+
+# File di MicroPython temporanei
+*.pyc
+__pycache__/
+
+# Visual Studio Code
+.vscode/
+*.code-workspace

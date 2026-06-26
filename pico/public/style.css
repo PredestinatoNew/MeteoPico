@@ -1,0 +1,163 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(180deg,#eef2f7 0%, #f9fbfd 100%);
+    background-image: url(https://github.com/predestinatonew/meteopico/server/images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #1f2937;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin: 0 0 12px 0;
+    font-size: 28px;
+    color: white;
+}
+
+.status-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.stat-box {
+    background: #ffffffee;
+    padding: 12px 16px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(16,24,40,0.06);
+    min-width: 180px;
+}
+
+.stat-value {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.small {
+    color: #475569;
+    font-size: 13px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 18px;
+    align-items: start;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(2,6,23,0.04);
+}
+
+.card h2 { margin-top: 0; }
+
+.two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+pre {
+    background: #f8fafc;
+    padding: 10px;
+    border-radius: 6px;
+    max-height: 420px;
+    overflow: auto;
+}
+
+label { display: block; margin-bottom: 6px; font-weight: 600; }
+input[type=time] { padding: 6px 8px; border-radius: 6px; border: 1px solid #e2e8f0; }
+button {
+    background: linear-gradient(180deg,#2563eb,#1d4ed8);
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+button.secondary { background: #f1f5f9; color: #0f172a; }
+
+.meta { color: #64748b; font-size: 13px; margin-top: 8px; }
+
+@media (max-width: 880px) {
+    .grid { grid-template-columns: 1fr; }
+    .status-row { flex-direction: column; }
+}
+
+/* Dark Theme */
+html[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+html[data-theme="dark"] body {
+    background-blend-mode: darken;
+    color: #e8eef7;
+}
+
+html[data-theme="dark"] .stat-box {
+    background: #2d3748ee;
+    color: #e8eef7;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="dark"] .small {
+    color: #cbd5e0;
+}
+
+html[data-theme="dark"] .card {
+    background: #2d3748;
+    color: #e8eef7;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="dark"] h2 {
+    color: #e8eef7;
+}
+
+html[data-theme="dark"] pre {
+    background: #1a202c;
+    color: #e8eef7;
+    border: 1px solid #4a5568;
+}
+
+html[data-theme="dark"] input[type=time] {
+    background: #1a202c;
+    color: #e8eef7;
+    border: 1px solid #4a5568;
+}
+
+html[data-theme="dark"] select {
+    background: #1a202c;
+    color: #e8eef7;
+    border: 1px solid #4a5568;
+}
+
+html[data-theme="dark"] label {
+    color: #cbd5e0;
+}
+
+html[data-theme="dark"] .meta {
+    color: #a0aec0;
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Pico Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/manifest.json">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1 style="font-size: xx-large; font-weight: bold;">MeteoPico Dashboard</h1>
+                <div class="small" style="color: white; font-size: large;">Riepilogo misurazioni recenti e storico</div>
+            </div>
+            <div class="meta" id="timestamp">--</div>
+        </div>
+
+        <div class="status-row">
+            <div class="stat-box">
+                <div class="small">Temperatura</div>
+                <div id="tempVal" class="stat-value">-- °C</div>
+                <div class="small">Margine di errore: <span id="tempError">--</span></div>
+            </div>
+
+            <div class="stat-box">
+                <div class="small">Umidità</div>
+                <div id="humVal" class="stat-value">-- %</div>
+                <div class="small">Margine di errore: <span id="humError">--</span></div>
+            </div>
+
+            <div class="stat-box">
+                <div class="small">Presenza di Luce</div>
+                <img id="lightIcon" src="https://github.com/predestinatonew/meteopico/server/icons/sun.svg" alt="light-status"
+                    style="height: 40px; width: 40px; margin: 8px 0;">
+            </div>
+
+            <div class="stat-box">
+                <div class="small">Orario UTC</div>
+                <div id="dayVal" class="stat-value">--</div>
+                <div class="small" id="dateVal">--</div>
+            </div>
+
+            <div class="stat-box">
+                <div class="small">Tema</div>
+                <button class="stat-value" style="font-size: small; margin-top: 5%;" onclick="toggleTheme()">🌙 Scuro</button>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div>
+                <!-- Reworkare -->
+                <!--div class="card">
+                    <h2>Orario Misurazioni</h2>
+                    <div class="two-col">
+                        <div>
+                            <label>Orario mattina</label>
+                            <input type="time" id="morning">
+                        </div>
+                        <div>
+                            <label>Orario sera</label>
+                            <input type="time" id="evening">
+                        </div>
+                    </div>
+                    <div style="margin-top:12px;">
+                        <button onclick="saveSettings()">Salva impostazioni</button>
+                        <button class="secondary" onclick="loadStatus()" style="margin-left:8px;">Aggiorna</button>
+                    </div>
+                </div-->
+
+                <div class="card" style="margin-top:12px;">
+                    <h2>Dettaglio ultima misurazione</h2>
+                    <pre id="lastDetail">Nessun dato disponibile</pre>
+                </div>
+
+                <div class="card" style="padding:20px; border-radius:12px; margin-top:20px;">
+                    <h2>Grafico</h2>
+                    <canvas id="tempChart"
+                        style="width:100%; max-width:600px; height:200px; background:#f8f9fa; border-radius:8px;"></canvas>
+                </div>
+
+            </div>
+
+
+            <div>
+                <div class="card">
+                    <h2>Storico Ultimi 7 Giorni</h2>
+                    <div style="display:flex; gap:8px; margin-bottom:10px;">
+                        <button onclick="download('json')">Scarica JSON</button>
+                        <button onclick="download('csv')">Scarica CSV</button>
+                    </div>
+                    <pre id="log">Caricamento...</pre>
+                </div>
+                <!--div class="card" style="margin-top:12px; padding:16px;">
+                    <h2>Settings</h2>
+
+                    <label for="timezone">Time zone</label><br>
+                    <select id="timezone" style="margin-bottom:12px; width:100%;"></select>
+                    <br>
+
+                    <button onclick="saveSettings()">Save</button>
+                </div-->
+            </div>
+        </div>
+
+    </div>
+
+    <script src="graphic.js" defer></script>
+    <script src="settings.js" defer></script>
+    <script src="logs.js" defer></script>
+    <script src="telemetry.js" defer></script>
+
+</body>
+
+</html>
